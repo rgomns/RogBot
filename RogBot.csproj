@@ -96,6 +96,14 @@
   <ItemGroup>
     <Content Include="main.js" />
     <Content Include="packages.config" />
+    <Content Include="prototype.spawn.js" />
+    <Content Include="role.builder.js" />
+    <Content Include="role.claimer.js" />
+    <Content Include="role.harvester.js" />
+    <Content Include="role.longDistanceHarvester.js" />
+    <Content Include="role.repairer.js" />
+    <Content Include="role.upgrader.js" />
+    <Content Include="role.wallRepairer.js" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
