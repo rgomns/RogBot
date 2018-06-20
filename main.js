@@ -8,7 +8,7 @@ var roleWallRepairer = require('role.wallRepairer');
 var roleLongDistanceHarvester = require('role.longDistanceHarvester');
 var roleClaimer = require('role.claimer');
 
-global.HOME = 'W54S79';
+global.HOME = 'W2N5';
 
 module.exports.loop = function () {
     // check for memory entries of died creeps by iterating over Memory.creeps
@@ -29,46 +29,46 @@ module.exports.loop = function () {
         if (creep.memory.role == 'harvester') {
             roleHarvester.run(creep);
         }
-        // if creep is upgrader, call upgrader script
+            // if creep is upgrader, call upgrader script
         else if (creep.memory.role == 'upgrader') {
             roleUpgrader.run(creep);
         }
-        // if creep is builder, call builder script
+            // if creep is builder, call builder script
         else if (creep.memory.role == 'builder') {
             roleBuilder.run(creep);
         }
-        // if creep is repairer, call repairer script
+            // if creep is repairer, call repairer script
         else if (creep.memory.role == 'repairer') {
             roleRepairer.run(creep);
         }
-        // if creep is wallRepairer, call wallRepairer script
+            // if creep is wallRepairer, call wallRepairer script
         else if (creep.memory.role == 'wallRepairer') {
             roleWallRepairer.run(creep);
         }
-        // if creep is longDistanceHarvester, call longDistanceHarvester script
+            // if creep is longDistanceHarvester, call longDistanceHarvester script
         else if (creep.memory.role == 'longDistanceHarvester') {
             roleLongDistanceHarvester.run(creep);
         }
-        // if creep is claimer, call claimer script
+            // if creep is claimer, call claimer script
         else if (creep.memory.role == 'claimer') {
             roleClaimer.run(creep);
         }
     }
 
     // find all towers
-    var towers = Game.rooms[HOME].find(FIND_STRUCTURES, {
-        filter: (s) => s.structureType == STRUCTURE_TOWER
-    });
+    //    var towers = Game.rooms[HOME].find(FIND_STRUCTURES, {
+    //      filter: (s) => s.structureType == STRUCTURE_TOWER
+    // });
     // for each tower
-    for (let tower of towers) {
-        // find closes hostile creep
-        var target = tower.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
-        // if one is found...
-        if (target != undefined) {
-            // ...FIRE!
-            tower.attack(target);
-        }
-    }
+    //  for (let tower of towers) {
+    // find closes hostile creep
+    //    var target = tower.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
+    // if one is found...
+    //  if (target != undefined) {
+    // ...FIRE!
+    //    tower.attack(target);
+    // }
+    // }
 
     // iterate over all the spawns
     for (let spawnName in Game.spawns) {
@@ -104,7 +104,7 @@ module.exports.loop = function () {
                     spawn.room.energyAvailable, 'harvester');
             }
         }
-        // if there is a claim order defined
+            // if there is a claim order defined
         else if (spawn.memory.claimRoom != undefined) {
             // try to spawn a claimer
             name = spawn.createClaimer(spawn.memory.claimRoom);
@@ -114,12 +114,12 @@ module.exports.loop = function () {
                 delete spawn.memory.claimRoom;
             }
         }
-        // if not enough upgraders
+            // if not enough upgraders
         else if (numberOfUpgraders < spawn.memory.minUpgraders) {
             // try to spawn one
             name = spawn.createCustomCreep(energy, 'upgrader');
         }
-        // if not enough repairers
+            // if not enough repairers
         else if (numberOfRepairers < spawn.memory.minRepairers) {
             // try to spawn one
             name = spawn.createCustomCreep(energy, 'repairer');
@@ -146,13 +146,15 @@ module.exports.loop = function () {
         }
         else {
             // else try to spawn a builder
-            name = spawn.createCustomCreep(energy, 'builder');
+           
+            //     name = spawn.createCustomCreep(energy, 'builder');
         }
 
         // print name to console if spawning was a success
         // name > 0 would not work since string > 0 returns false
-        if (!(name < 0)) {
-            console.log(spawnName + " spawned new creep: " + name + " (" + Game.creeps[name].memory.role + ")");
+        if (!(name < 0  || name == undefined)) {
+           
+           console.log(spawnName + " spawned new creep: " + name + " (" + Game.creeps[name].memory.role + ")");
             console.log("Harvesters    : " + numberOfHarvesters);
             console.log("Upgraders     : " + numberOfUpgraders);
             console.log("Builders      : " + numberOfBuilders);
@@ -160,5 +162,29 @@ module.exports.loop = function () {
             console.log("WallRepairers : " + numberOfWallRepairers);
             console.log("LDH W52S78    : " + numberOfLongDistanceHarvestersW54S78);
         }
+
+
+
+        //for (var _room in Game.rooms) {
+
+
+        //    var _rm = Game.rooms[_room];
+
+        //    console.log(_rm);
+        //    for (let _creep in _rm.creeps) {
+        //        console.log("324234");
+        //        var _cr = _rm.creeps[_cr];
+
+        //        var _sources = _cr.pos.findNearest(Game.SOURCES);
+        //        console.log("234");
+        //        for (let _source in _sources.sources) {
+        //            console.log(_source.id);
+        //        }
+        //    }
+        //}
+
+
+
+
     }
 };

@@ -4,6 +4,7 @@ module.exports = function() {
         function(energy, roleName) {
             // create a balanced body as big as possible with the given energy
             var numberOfParts = Math.floor(energy / 200);
+          //  console.log("numberOfParts:" & numberOfParts)
             var body = [];
             for (let i = 0; i < numberOfParts; i++) {
                 body.push(WORK);
